@@ -1,0 +1,13 @@
+img{
+    width: 200px;
+    border-radius: 30px;
+    float: left;
+    margin-right: 10px;
+}
+.Introduction{
+    font-weight: bold;
+}
+em{
+    color: brown;
+    font-style: normal;
+}
