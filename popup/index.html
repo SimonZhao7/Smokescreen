@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale-1.0"> 
     <meta name="keywords" content="hide, shield, block">
     <meta name="description" content="This plug-in will hide the things you don't like">
-
     <title>Smoke Screen</title>
     <style>
         img{
@@ -42,11 +41,15 @@
             <b>Connect Us</b>
             </button>
         </a>
-        <form>
-            <p></p>
-            <label>Hide word</label>
-            <input type="Hide word"><br>
-            <button>Submit</button>
-        </form>
+        <form id="myForm">
+          <p></p>
+          <label>Word you want to hide</label>
+          <input id="myInput" type="text"><br>
+          <button type="submit">Submit</button>
+      </form>
+      <div id="arrayDisplay"></div>
+
+  
   </body>
+  <script src="script.js"></script>
 </html>
