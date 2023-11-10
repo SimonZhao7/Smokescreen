@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.image-contatiner{
+    width: 200px;
+    height: 200px;
+}
+.image-contatiner img{
+    width: 100%;
+    height: 100%;
+}
