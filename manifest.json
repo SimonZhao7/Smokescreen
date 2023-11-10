@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "Smokescreen",
+    "description": "Extension for blocking out content",
+    "version": "1.0",
+    "action": {
+      "default_popup": "popup/index.html",
+      "default_icon": "images/icon.png"
+    }
+  }
