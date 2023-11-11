@@ -8,11 +8,13 @@ html, body {
 }
 
 body {
-    background-color: #3d3d3d;
+    background-color: #747171;
     width: 250px;
     height: 400px;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    font-family: "Monaco";
 }
 
 main {
@@ -24,6 +26,7 @@ nav {
     height: 60px;
     display: flex;
     background-color: #4f4f4f;
+    justify-content: center;
 } 
 
 a {
@@ -74,7 +77,5 @@ ul, li {
 }
 
 #him {
-    text-align: left;
-    padding-left: 63px;
-    margin-left: 20px;
+    text-align: center;
 }
