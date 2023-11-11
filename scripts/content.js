@@ -2,12 +2,13 @@ var target = document.querySelector('body');
 console.log(target);
 
 var observer = new MutationObserver(function(mutations) {
-    const images = document.getElementsByTagName('img');
-    mutations.forEach(() => { 
-      for (let i = images.length - 1; i >= 0 ; i--){
-        images[i].style.display = "none";
+    const images = document.getElementsByTagName("img");
+    const videos = document.getElementsByTagName("video");
+    mutations.forEach(() => {
+      for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
+        if (i < images.length) images[i].style.display = "none";
+        if (i < videos.length) videos[i].style.display = "none";
       };
-      
     });
 });
 
