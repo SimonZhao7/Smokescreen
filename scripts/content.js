@@ -12,23 +12,27 @@ var observer = new MutationObserver(async function(mutations) {
       switch('youtube.com') {
         case 'youtube.com':
           //let yt_data = youtube request json file.
-          const response = await fetch('https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDcaS8O3obhKz61gZcNTmoOcFtmbGQlZXc&fields=items(snippet(title,description,tags))&part=snippet&id=0y_HefNkmnk');
-          if (response.status == 200){
-            const yt_data = await response.json();
-            const content = yt_data['items'][0]['snippet']['title'] + yt_data['items'][0]['snippet']['description'];
-            if (check_similarity(content, words)){
-              if (i < images.length) images[i].style.display = "none";
-              if (i < videos.length) {
-                  videos[i].style.display = "none";
-                  videos[i].pause();
-                  videos[i].autoplay = false;
-                  videos[i].controls = false;
-              } else {
-                continue;
+          const sections = images[i].src.split('/');
+          if (sections.length > 4 && sections[4].length === 11) {
+            const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDcaS8O3obhKz61gZcNTmoOcFtmbGQlZXc&fields=items(snippet(title,description,tags))&part=snippet&id=${sections[4]}`);
+            console.log(response.status);
+            if (response.status == 200){
+              const yt_data = await response.json();
+              const content = yt_data['items'][0]['snippet']['title'] + yt_data['items'][0]['snippet']['description'];
+              if (check_similarity(content, words)){
+                if (i < images.length) images[i].style.display = "none";
+                if (i < videos.length) {
+                    videos[i].style.display = "none";
+                    videos[i].pause();
+                    videos[i].autoplay = false;
+                    videos[i].controls = false;
+                } else {
+                  continue;
+                }
               }
+            } else {
+              console.log('errored');
             }
-          } else {
-            console.log('errored');
           }
           break;
         case 'twitter.com':
