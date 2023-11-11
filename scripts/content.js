@@ -72,16 +72,17 @@ var target = document.querySelector('body');
 //   }
 // });
 
-
-
+let resMap = new Map();
 const doStuff = async () => {
+  let idMap = new Map();
   const res = await chrome.storage.local.get('toggled');
   if (res['toggled'] !== undefined && res['toggled'] == true) {
     const images = document.getElementsByTagName("img");
     const videos = document.getElementsByTagName("video");
-    const s = new Set();
-    for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
-      let words = await get_hidden();
+    let words = await get_hidden();
+
+    // NOTE: Loop Images ONLY for now
+    for (let i = images.length - 1; i >= 0 ; i--){
       
       // Pesudocode
       switch('youtube.com') {
@@ -89,53 +90,51 @@ const doStuff = async () => {
           //let yt_data = youtube request json file.
           const sections = images[i].src.split('/');
           if (sections.length > 4 && sections[4].length === 11) {
-            s.add(sections[4]);
-            // const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDcaS8O3obhKz61gZcNTmoOcFtmbGQlZXc&fields=items(snippet(title,description,tags))&part=snippet&id=${sections[4]}`);
-            // console.log(response.status);
-            // if (response.status == 200){
-            //   const yt_data = await response.json();
-            //   const content = yt_data['items'][0]['snippet']['title'] + yt_data['items'][0]['snippet']['description'];
-            //   if (check_similarity(content, words)){
-            //     if (i < images.length) images[i].style.display = "none";
-            //     if (i < videos.length) {
-            //         videos[i].style.display = "none";
-            //         videos[i].pause();
-            //         videos[i].autoplay = false;
-            //         videos[i].controls = false;
-            //     } else {
-            //       continue;
-            //     }
-            //   }
-            // } else {
-            //   console.log('errored');
-            // }
+            const id = sections[4];
+            if (!idMap.has(id)) {
+              idMap.set(id, []);
+            }
+            const imgs = idMap.get(id);
+            imgs.push(images[i]);
+            idMap.set(id, imgs);
           }
           break;
-        case 'twitter.com':
-          // code block
+        default: 
           break;
-        case 'instagram.com':
-          break;
-        default:
-          // code
-      }
-    //   if (url == 'youtube.com'){
-    //     if (check_similarity(images[i].getAttribute("alt"), words)) {
-    //       if (i < images.length) images[i].style.display = "none";
-    //       if (i < videos.length) {
-    //           videos[i].style.display = "none";
-    //           videos[i].pause();
-    //           videos[i].autoplay = false;
-    //           videos[i].controls = false;
-    //       }
-    //     } else {
-    //       continue;
-    //     }
-
-    // }
     }
-    console.log(s);
   }
+
+  let run = 0;
+  for (let key of idMap.keys()) {
+    if (resMap.has(key)) continue;
+    const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDaQys31yERwJhgtTf-Lia1H-GjUQmp68A&fields=items(snippet(title,description,tags))&part=snippet&id=${key}`);
+    run++;
+    if (response.status == 200){
+      const yt_data = await response.json();
+      const content = yt_data['items'][0]['snippet']['title'] + yt_data['items'][0]['snippet']['description'];
+      resMap.set(key, check_similarity(content, words));
+      console.log(check_similarity(content, words));
+    } else {
+      console.log('errored');
+      console.log(response.error);
+      resMap.set(key, false);
+    }
+  }
+  console.log(run);
+  console.log(idMap);
+  for (let key of idMap.keys()) {
+    console.log(key)
+    idMap.get(key).forEach((img) => {
+      if (resMap.get(key)) {
+        img.style.display = "none";
+        // if (i < videos.length) {
+        //     videos[i].style.display = "none";
+        //     videos[i].pause();
+        //     videos[i].autoplay = false;
+        //     videos[i].controls = false;
+    }})
+  }
+}
 }
 
 let timeoutId = null;
