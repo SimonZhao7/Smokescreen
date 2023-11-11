@@ -39,8 +39,8 @@ a {
 ul {
     display: flex;
     padding: 16px;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 ul, li {
@@ -78,4 +78,14 @@ ul, li {
 
 #him {
     text-align: center;
+}
+
+img {
+    border-radius: 30px;
+    width: 100px;
+    height: 100px;
+}
+p {
+    font-size: larger;
+    font-family: "Monaco";
 }
