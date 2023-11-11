@@ -27,7 +27,7 @@ nav {
     display: flex;
     background-color: #4f4f4f;
     justify-content: center;
-} 
+}
 
 a {
     text-decoration: none;
@@ -56,10 +56,12 @@ ul, li {
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
     aspect-ratio: 1 / 1;
-    width: 50%;
+    width: 200px; /* Adjust the width as needed */
+    height: 200px; /* Adjust the height as needed */
     margin: auto;
     transition: background-color 0.3s ease-out;
 }
+
 
 .on {
     color: #5e9c49;
@@ -84,6 +86,7 @@ img {
     border-radius: 30px;
     width: 100px;
     height: 100px;
+    margin: 0 auto;
 }
 p {
     font-size: larger;
