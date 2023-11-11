@@ -1,29 +1,28 @@
 var target = document.querySelector('body');
 
 var observer = new MutationObserver(async function(mutations) {
-    const res = await chrome.storage.local.get('toggled');
-    if (res['toggled'] !== undefined && res['toggled'] == true) {
-      const images = document.getElementsByTagName("img");
-      const videos = document.getElementsByTagName("video");
-      setTimeout(async () => {
-        for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
-          let words = await get_hidden();
+  const res = await chrome.storage.local.get('toggled');
+  if (res['toggled'] !== undefined && res['toggled'] == true) {
+    const images = document.getElementsByTagName("img");
+    const videos = document.getElementsByTagName("video");
+    for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
+      let words = await get_hidden();
 
-          if (check_similarity(images[i].getAttribute("alt"), words)) {
-            if (i < images.length) images[i].style.display = "none";
-            if (i < videos.length) {
-                videos[i].style.display = "none";
-                videos[i].pause();
-                videos[i].autoplay = false;
-                videos[i].controls = false;
-            }
-          } else {
-              continue;
-          }
+      if (check_similarity(images[i].getAttribute("alt"), words)) {
+        if (i < images.length) images[i].style.display = "none";
+        if (i < videos.length) {
+            videos[i].style.display = "none";
+            videos[i].pause();
+            videos[i].autoplay = false;
+            videos[i].controls = false;
+        }
+      } else {
+        continue;
+      }
     }
-      })
-    }
-});
+  }
+  }
+);
 
 async function get_hidden(){
   let res = await new Promise((resolve, reject) => {
@@ -62,17 +61,29 @@ observer.observe(target, {
 });
 
 
-chrome.runtime.onMessage.addListener(msg => {
+chrome.runtime.onMessage.addListener(async (msg) => {
   const { toggled } = JSON.parse(msg);
   const images = document.getElementsByTagName("img");
   const videos = document.getElementsByTagName("video");
+
   for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
-    if (i < images.length) images[i].style.display = toggled ? "none" : "block";
-    if (i < videos.length) {
-      videos[i].style.display = toggled ? "none" : "block";
-      if (toggled) videos[i].pause();
-      videos[i].autoplay = !toggled;
-      videos[i].controls = !toggled;
+    let words = await get_hidden();
+
+    if (toggled && check_similarity(images[i].getAttribute("alt"), words)) {
+      if (i < images.length) images[i].style.display = "none";
+      if (i < videos.length) {
+          videos[i].style.display = "none";
+          videos[i].pause();
+          videos[i].autoplay = false;
+          videos[i].controls = false;
+      }
+    } else {
+      if (i < images.length) images[i].style.display = "block";
+      if (i < videos.length) {
+          videos[i].style.display = "block";
+          videos[i].autoplay = true;
+          videos[i].controls = true;
+      }
     }
-  };
+  }
 })
