@@ -8,13 +8,13 @@ html, body {
 }
 
 body {
-    background-color: #000347;
-    width: 250px;
-    height: 500px;
+    background-color: #141526;
+    width: 275px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     text-align: center;
-    font-family: "Consolas";
+    font-family: "Roboto";
 }
 
 main {
@@ -28,10 +28,13 @@ nav {
     margin-left: 20%;
     height: 60px;
     display: flex;
-    background-color: #000276;
+    background-color: #008ECC;
+    align-items: center;
     justify-content: center;
-    font-family: "Arial";
+    font-family: "Roboto";
     border-radius: 3rem;
+    letter-spacing: 6px;
+    text-indent: 6px;
 }
 
 a {
@@ -55,28 +58,34 @@ ul, li {
 }
 
 #toggle {
-    display: block;
-    background-color: #000347;
+    display: flex;
+    background-color: #141526;
     border-radius: 50%;
     font-size: 48px;
-    font-family: "Arial";
+    font-family: "Roboto";
     width: 200px;
     height: 200px;
     margin: auto;
+    font-weight: 100;
+    letter-spacing: 12px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-indent: 12px;
 }
 
 .on {
     color: #FFFFFF;
-    border: 3px solid #7BD5F5;
+    border: 2px solid #7BD5F5;
 }
 
 .off {
     color: #FFFFFF;
-    border: 3px solid #7BD5F5;
+    border: 2px solid #7BD5F5;
 }
 
 #toggle:hover {
-    background-color: #000276;
+    background-color: #141526;
     cursor: pointer;
 }
 
@@ -84,22 +93,18 @@ ul, li {
     text-align: center;
 }
 
-img {
-    border-radius: 30px;
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;
-}
 p {
     font-size: larger;
-    font-family: "Consolas";
+    font-family: "Roboto";
 }
 
 button[type="submit"] {
-    font-family: "Consolas";
+    font-family: "Roboto";
     font-size: large;
     border-radius: 10px; /* Adjust the border-radius as needed */
     background: linear-gradient(to top, #4ADEDE, #7BD5F5);
-    background-color: #000347;
+    background-color: #141526;
     color: initial; /* Set the color to initial to use the default text color */
+    display: flex;
+    align-items: center;
 }
