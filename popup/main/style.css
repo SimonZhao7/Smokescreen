@@ -8,7 +8,7 @@ html, body {
 }
 
 body {
-    background-color: #8e8e8e;
+    background-color: #BCA37F;
     width: 250px;
     height: 500px;
     display: flex;
@@ -51,7 +51,7 @@ ul, li {
 
 #toggle {
     display: block;
-    background-color: #3d3d3d;
+    background-color: #d0d0d0;
     border-radius: 50%;
     font-size: 24px;
     font-family: "Consolas";
@@ -63,7 +63,7 @@ ul, li {
 }
 
 .on {
-    color: #5e9c49;
+    color: #428d29;
     border: 3px solid #5e9c49;
 }
 
