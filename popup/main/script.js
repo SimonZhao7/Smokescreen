@@ -8,7 +8,6 @@ window.addEventListener('load', async () => {
     }
 })
 
-
 const btn = document.getElementById('toggle');
 
 btn.addEventListener('click', async () => {
