@@ -4,11 +4,8 @@
   "description": "Extension for blocking out content",
   "version": "1.0",
   "action": {
-    "default_popup": "popup/index/index.html",
+    "default_popup": "popup/main/index.html",
     "default_icon": "images/icon.png"
-  },
-  "background": {
-    "service_worker": "background.js"
   },
   "permissions": [
     "webNavigation",
