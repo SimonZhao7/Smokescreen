@@ -10,7 +10,7 @@ html, body {
 body {
     background-color: #747171;
     width: 250px;
-    height: 500px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     text-align: center;
