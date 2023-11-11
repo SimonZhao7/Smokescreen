@@ -64,15 +64,17 @@ ul, li {
 .on {
     color: #5e9c49;
     border: 3px solid #5e9c49;
+    background-color: #d0d0d0;
 }
 
 .off {
     color: #c73447;
     border: 3px solid #c73447;
+    background-color: #858585;
 }
 
 #toggle:hover {
-    background-color: #4f4f4f;
+    background-color: #707070;
     cursor: pointer;
 }
 

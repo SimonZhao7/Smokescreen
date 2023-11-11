@@ -7,7 +7,7 @@
   </head>
   <body>
     <main style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-      <button id="toggle" class="off" style="font-size: 24px; padding: 15px;">OFF</button>
+      <button id="toggle" class="off" style="font-size: 24px; padding: 15px;" onclick="toggleButton()">OFF</button>
     </main>
     <nav>
       <ul>
@@ -15,6 +15,14 @@
       </ul>
     </nav>
     <script src="./script.js"></script>
+    <script>
+      function toggleButton() {
+          var button = document.getElementById("toggle");
+          button.classList.toggle("on");
+          button.classList.toggle("off");
+      }
+  </script>
+  
   </body>  
   
 </html>
