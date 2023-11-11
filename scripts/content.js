@@ -6,16 +6,50 @@ var observer = new MutationObserver(async function(mutations) {
       const images = document.getElementsByTagName("img");
       const videos = document.getElementsByTagName("video");
       for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
-        if (i < images.length) images[i].style.display = "none";
-        if (i < videos.length) {
-          videos[i].style.display = "none";
-          videos[i].pause();
-          videos[i].autoplay = false;
-          videos[i].controls = false;
-        }
-      };
+            let words = await get_hidden();
+  
+            if (check_similarity(images[i].getAttribute("alt"), words)) {
+              if (i < images.length) images[i].style.display = "none";
+              if (i < videos.length) {
+                  videos[i].style.display = "none";
+                  videos[i].pause();
+                  videos[i].autoplay = false;
+                  videos[i].controls = false;
+              }
+            } else {
+                continue;
+            }
+      }
     }
 });
+
+async function get_hidden(){
+  let res = await new Promise((resolve, reject) => {
+     chrome.storage.sync.get('hiddenWords', result => {
+        if (chrome.runtime.lastError) {
+           reject(chrome.runtime.lastError);
+        } else {
+           resolve(result);
+        }
+    });
+ });
+ return res['hiddenWords'] ?? [];
+}
+
+function check_similarity(string, words) {
+  if (!string || words.length === 0) {
+      return false;
+  }
+
+  string = string.toLowerCase();
+
+  for (let i = 0; i < words.length; ++i){
+      if (string.includes(words[i].toLowerCase())){
+          return true;
+      }
+  }
+  return false;
+}
 
 observer.observe(target, {
   attributes: true, // monitors changes in attributes within the 'target' and descendants
