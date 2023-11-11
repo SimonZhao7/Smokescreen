@@ -67,6 +67,7 @@ function updateList() {
         removeButton.style.color = 'red';
         removeButton.style.background = 'transparent';
         removeButton.style.border = 'thin solid black';
+        removeButton.style.borderRadius = '50%';
         removeButton.addEventListener('click', function() {
             removeItem(i);
         });
