@@ -59,7 +59,7 @@ function updateList() {
         
         let wordSpan = document.createElement('span');
         wordSpan.textContent = hiddenWords[i];
-        wordSpan.style.marginRight = '20px';
+        wordSpan.style.marginRight = 'auto';
         listItem.appendChild(wordSpan);
         
         let removeButton = document.createElement('button');
