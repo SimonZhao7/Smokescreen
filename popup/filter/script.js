@@ -52,16 +52,18 @@ const removeItem = function(index) {
 }
 
 // Function to update the list display
+// Function to update the list display
 function updateList() {
     let list = document.createElement('ul');
     for(let i = 0; i < hiddenWords.length; i++) {
         let listItem = document.createElement('li');
-        
+        listItem.style.display = 'flex';
+        listItem.style.justifyContent = 'space-between';
+
         let wordSpan = document.createElement('span');
         wordSpan.textContent = hiddenWords[i];
-        wordSpan.style.marginRight = 'auto';
         listItem.appendChild(wordSpan);
-        
+
         let removeButton = document.createElement('button');
         removeButton.textContent = 'X';
         removeButton.style.color = 'red';
@@ -71,7 +73,7 @@ function updateList() {
         removeButton.addEventListener('click', function() {
             removeItem(i);
         });
-        
+
         listItem.appendChild(removeButton);
         list.appendChild(listItem);
     }
