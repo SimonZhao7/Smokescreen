@@ -2,31 +2,33 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style.css">
   </head>
-  <body>
+  <body style="background-color: rgb(105, 103, 103);">
     <main>
       <center>
-        <h1 title="Smokescreen shit"><b><em>Smoke Screen</em></b></h1>
-        <p class="Introduction">This plug-in will hide the things you don't like</p>
-        </center>
+        <h1 style="font-family: Monaco; font-size: 3em;" title="Smokescreen"><em>Smoke Screen</em></h1>
+        <p style="font-family: Monaco;" class="Introduction">This plug-in can hide the things you don't like to see</p>
 
-        <a title="Connect information" class="button" href="../connectUs/connectUs.html">
-            <button style="background-color: #4f4f4f; 
-            color:rgb(185, 47, 47); 
+      
+        <form id="myForm">
+          <p></p>
+          <label>Type the words that you want to hide</label>
+          <input id="myInput" type="text"><br>
+          <button type="submit">Submit</button>
+          <p></p>
+          <a title="Connect information" class="button" href="../connectUs/connectUs.html">
+            <button style="background-color: #8a8787; 
+            color:rgb(199, 192, 60); 
             width: 150px; 
-            border-radius: 5px;
+            border-radius: 20px;
             height: 50px;">
             <b>Connect Us</b>
             </button>
-        </a>
-        <form id="myForm">
-          <p></p>
-          <label>Word you want to hide</label>
-          <input id="myInput" type="text"><br>
-          <button type="submit">Submit</button>
+          </a>
+      </center>
       </form>
       <div id="arrayDisplay"></div>
     </main>
