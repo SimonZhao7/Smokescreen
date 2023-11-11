@@ -8,7 +8,7 @@ html, body {
 }
 
 body {
-    background-color: #747171;
+    background-color: #c3c3c3;
     width: 250px;
     height: 400px;
     display: flex;
@@ -82,8 +82,8 @@ ul, li {
 
 img {
     border-radius: 30px;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
 }
 p {
     font-size: larger;
