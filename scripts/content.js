@@ -126,12 +126,7 @@ const doStuff = async () => {
     console.log(key)
     idMap.get(key).forEach((img) => {
       if (resMap.get(key)) {
-        img.style.display = "none";
-        // if (i < videos.length) {
-        //     videos[i].style.display = "none";
-        //     videos[i].pause();
-        //     videos[i].autoplay = false;
-        //     videos[i].controls = false;
+        img.style.display = resMap.get(key) ? "none" : "block";
     }})
   }
 }
@@ -242,11 +237,9 @@ chrome.runtime.onMessage.addListener(async (msg) => {
     idMap.get(key).forEach((img) => {
       if (toggled) {
         img.style.display = resMap.get(key) ? "none" : "block";
-        // if (i < videos.length) {
-        //     videos[i].style.display = "none";
-        //     videos[i].pause();
-        //     videos[i].autoplay = false;
-        //     videos[i].controls = false;
+        img.pause();
+        img.autoplay = false;
+        img.controls = false;
     } else {
       img.style.display = "block";
     }

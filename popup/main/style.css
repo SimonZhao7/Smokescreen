@@ -8,7 +8,7 @@ html, body {
 }
 
 body {
-    background-color: #BCA37F;
+    background-color: #000347;
     width: 250px;
     height: 500px;
     display: flex;
@@ -23,10 +23,15 @@ main {
 }
 
 nav {
+    margin-bottom: 10%;
+    margin-right: 20%;
+    margin-left: 20%;
     height: 60px;
     display: flex;
-    background-color: #4f4f4f;
+    background-color: #000276;
     justify-content: center;
+    font-family: "Arial";
+    border-radius: 3rem;
 }
 
 a {
@@ -51,29 +56,27 @@ ul, li {
 
 #toggle {
     display: block;
-    background-color: #d0d0d0;
+    background-color: #000347;
     border-radius: 50%;
-    font-size: 24px;
-    font-family: "Consolas";
-    aspect-ratio: 1 / 1;
+    font-size: 48px;
+    font-family: "Arial";
     width: 200px;
     height: 200px;
     margin: auto;
-    transition: background-color 0.3s ease-out;
 }
 
 .on {
-    color: #428d29;
-    border: 3px solid #5e9c49;
+    color: #FFFFFF;
+    border: 3px solid #7BD5F5;
 }
 
 .off {
-    color: #c73447;
-    border: 3px solid #c73447;
+    color: #FFFFFF;
+    border: 3px solid #7BD5F5;
 }
 
 #toggle:hover {
-    background-color: #4f4f4f;
+    background-color: #000276;
     cursor: pointer;
 }
 
@@ -96,12 +99,7 @@ button[type="submit"] {
     font-family: "Consolas";
     font-size: large;
     border-radius: 10px; /* Adjust the border-radius as needed */
-    background-color: #ffffff;
+    background: linear-gradient(to top, #4ADEDE, #7BD5F5);
+    background-color: #000347;
     color: initial; /* Set the color to initial to use the default text color */
-    transition: background-color 0.3s ease-out;
-}
-
-button[type="submit"]:hover {
-    background-color: #5e9c49;
-    color: #ff0000;
 }
