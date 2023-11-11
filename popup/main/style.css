@@ -72,3 +72,9 @@ ul, li {
     background-color: #4f4f4f;
     cursor: pointer;
 }
+
+#him {
+    text-align: left;
+    padding-left: 63px;
+    margin-left: 20px;
+}
