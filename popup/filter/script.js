@@ -72,7 +72,7 @@ function updateList() {
         });
 
         // Display only 20 characters and add "..." if the item is longer
-        let displayedText = hiddenWords[i].length > 20 ? hiddenWords[i].substring(0, 20) + "..." : hiddenWords[i];
+        let displayedText = hiddenWords[i].length > 15 ? hiddenWords[i].substring(0, 15) + "..." : hiddenWords[i];
 
         let wordSpan = document.createElement('span');
         wordSpan.textContent = displayedText;

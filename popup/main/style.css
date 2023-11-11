@@ -14,7 +14,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    font-family: "Monaco";
+    font-family: "Consolas";
 }
 
 main {
