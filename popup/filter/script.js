@@ -1,6 +1,14 @@
 // Initialize the array
 let hiddenWords = [];
 
+// Load any saved words from chrome storage
+chrome.storage.sync.get(['hiddenWords'], function(result) {
+    if(result.hiddenWords !== undefined) {
+        hiddenWords = result.hiddenWords;
+        updateList();
+    }
+});
+
 // Get the form element
 let form = document.getElementById('myForm');
 
@@ -15,6 +23,11 @@ form.addEventListener('submit', function(event) {
     // Add the input value to the array only if it's not empty and not already in the array
     if (inputValue.trim() !== '' && !hiddenWords.includes(inputValue)) {
         hiddenWords.push(inputValue);
+
+        // Save the updated array to chrome storage
+        chrome.storage.sync.set({'hiddenWords': hiddenWords}, function() {
+            console.log('Value is set to ' + hiddenWords);
+        });
     }
 
     // Clear the input field
@@ -28,6 +41,11 @@ form.addEventListener('submit', function(event) {
 const removeItem = function(index) {
     // Remove the item at the specified index
     hiddenWords.splice(index, 1);
+
+    // Save the updated array to chrome storage
+    chrome.storage.sync.set({'hiddenWords': hiddenWords}, function() {
+        console.log('Value is set to ' + hiddenWords);
+    });
 
     // Update the array display
     updateList();
@@ -59,4 +77,3 @@ function updateList() {
     document.getElementById('arrayDisplay').innerHTML = '';
     document.getElementById('arrayDisplay').appendChild(list);
 }
-
