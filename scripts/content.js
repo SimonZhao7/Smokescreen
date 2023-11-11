@@ -184,25 +184,52 @@ chrome.runtime.onMessage.addListener(async (msg) => {
   const { toggled } = JSON.parse(msg);
   const images = document.getElementsByTagName("img");
   const videos = document.getElementsByTagName("video");
+  let idMap = new Map();
 
-  for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
-    let words = await get_hidden();
+  // if (toggled && check_similarity(images[i].getAttribute("alt"), words)) {
+  //   if (i < images.length) images[i].style.display = "none";
+  //   if (i < videos.length) {
+  //       videos[i].style.display = "none";
+  //       videos[i].pause();
+  //       videos[i].autoplay = false;
+  //       videos[i].controls = false;
+  //   }
+  // } else {
+  //   if (i < images.length) images[i].style.display = "block";
+  //   if (i < videos.length) {
+  //       videos[i].style.display = "block";
+  //       videos[i].autoplay = true;
+  //       videos[i].controls = true;
+  //   }
+  // }
 
-    if (toggled && check_similarity(images[i].getAttribute("alt"), words)) {
-      if (i < images.length) images[i].style.display = "none";
-      if (i < videos.length) {
-          videos[i].style.display = "none";
-          videos[i].pause();
-          videos[i].autoplay = false;
-          videos[i].controls = false;
+
+  for (let i = images.length - 1; i >= 0 ; i--){
+    const sections = images[i].src.split('/');
+    if (sections.length > 4 && sections[4].length === 11) {
+      const id = sections[4];
+      if (!idMap.has(id)) {
+        idMap.set(id, []);
       }
-    } else {
-      if (i < images.length) images[i].style.display = "block";
-      if (i < videos.length) {
-          videos[i].style.display = "block";
-          videos[i].autoplay = true;
-          videos[i].controls = true;
-      }
+      const imgs = idMap.get(id);
+      imgs.push(images[i]);
+      idMap.set(id, imgs);
     }
   }
+
+  for (let key of idMap.keys()) {
+    idMap.get(key).forEach((img) => {
+      if (toggled) {
+        img.style.display = resMap.get(key) ? "none" : "block";
+        // if (i < videos.length) {
+        //     videos[i].style.display = "none";
+        //     videos[i].pause();
+        //     videos[i].autoplay = false;
+        //     videos[i].controls = false;
+    } else {
+      img.style.display = "block";
+    }
+  })
+  }
+
 })
