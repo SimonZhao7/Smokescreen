@@ -56,10 +56,12 @@ ul, li {
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
     aspect-ratio: 1 / 1;
-    width: 50%;
+    width: 200px; /* Adjust the width as needed */
+    height: 200px; /* Adjust the height as needed */
     margin: auto;
     transition: background-color 0.3s ease-out;
 }
+
 
 .on {
     color: #5e9c49;
