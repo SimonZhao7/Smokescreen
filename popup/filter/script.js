@@ -22,7 +22,7 @@ form.addEventListener('submit', function(event) {
 
     // Add the input value to the array only if it's not empty and not already in the array
     if (inputValue.trim() !== '' && !hiddenWords.includes(inputValue)) {
-        hiddenWords.push(inputValue);
+        hiddenWords.push(inputValue.trim());
 
         // Save the updated array to chrome storage
         chrome.storage.sync.set({'hiddenWords': hiddenWords}, function() {

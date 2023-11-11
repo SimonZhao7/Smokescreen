@@ -5,21 +5,23 @@ var observer = new MutationObserver(async function(mutations) {
     if (res['toggled'] !== undefined && res['toggled'] == true) {
       const images = document.getElementsByTagName("img");
       const videos = document.getElementsByTagName("video");
-      for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
-            let words = await get_hidden();
-  
-            if (check_similarity(images[i].getAttribute("alt"), words)) {
-              if (i < images.length) images[i].style.display = "none";
-              if (i < videos.length) {
-                  videos[i].style.display = "none";
-                  videos[i].pause();
-                  videos[i].autoplay = false;
-                  videos[i].controls = false;
-              }
-            } else {
-                continue;
+      setTimeout(async () => {
+        for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
+          let words = await get_hidden();
+
+          if (check_similarity(images[i].getAttribute("alt"), words)) {
+            if (i < images.length) images[i].style.display = "none";
+            if (i < videos.length) {
+                videos[i].style.display = "none";
+                videos[i].pause();
+                videos[i].autoplay = false;
+                videos[i].controls = false;
             }
-      }
+          } else {
+              continue;
+          }
+    }
+      })
     }
 });
 
@@ -38,18 +40,19 @@ async function get_hidden(){
 
 function check_similarity(string, words) {
   if (!string || words.length === 0) {
-      return false;
+    return false;
   }
 
   string = string.toLowerCase();
 
-  for (let i = 0; i < words.length; ++i){
-      if (string.includes(words[i].toLowerCase())){
-          return true;
+  for (let i = 0; i < words.length; ++i) {
+      if (string.toLowerCase().includes(words[i].toLowerCase())){
+        return true;
       }
   }
   return false;
 }
+
 
 observer.observe(target, {
   attributes: true, // monitors changes in attributes within the 'target' and descendants
@@ -57,6 +60,7 @@ observer.observe(target, {
   characterData: true, // observes changes in 'textContent' of 'target' and descendants
   subtree: true // extends observation to the entire subtree of 'target'
 });
+
 
 chrome.runtime.onMessage.addListener(msg => {
   const { toggled } = JSON.parse(msg);
