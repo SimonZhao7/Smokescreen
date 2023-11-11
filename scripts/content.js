@@ -1,15 +1,19 @@
 var target = document.querySelector('body');
+console.log(target);
 
 var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      const body = document.getElementsByTagName('body')[0];
-      const images = document.getElementsByTagName('img');
+    const images = document.getElementsByTagName('img');
+    mutations.forEach(() => { 
+      for (let i = images.length - 1; i >= 0 ; i--){
+        images[i].style.display = "none";
+      };
+      
     });
 });
 
 observer.observe(target, {
-  attributes: true, 
-  childList: true, 
-  characterData: true,
-  subtree: true
-}); 
+  attributes: true, // monitors changes in attributes within the 'target' and descendants
+  childList: true, // observes changes in direct children of 'target'
+  characterData: true, // observes changes in 'textContent' of 'target' and descendants
+  subtree: true // extends observation to the entire subtree of 'target'
+});
