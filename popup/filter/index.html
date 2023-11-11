@@ -2,38 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0"> 
     <meta name="keywords" content="hide, shield, block">
     <meta name="description" content="This plug-in will hide the things you don't like">
-    <link rel="stylesheet" href="style.css">
     <title>Smoke Screen</title>
+    <link rel="stylesheet" href="styleOfcolor.css">
+    <style>
+      img{
+          width: 200px;
+          border-radius: 30px;
+          margin-right: 10px;
+      }
+      .Introduction{
+          font-weight: bold;
+      }
+      em{
+          color: brown;
+          font-style: normal;
+      }
+  </style>
+
   </head>
   <body style="background-color: #FFF2EF;">
-        <center>
-        <img title="Why are you looking at me? Is it funny? Why so funny?" src="image/image_dog.jpg" alt="An image of a dog">
-            <h1 title="Smokescreen shit">Here is the <b><em>Smoke screen</em></b></h1>
-        <p class="Introduction">This plug-in will hide the things you don't like</p>
-        
-        <p title="nothing here, don't look at me">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio nostrum sit tempora ea eaque itaque illo maxime nemo cumque totam, exercitationem repellendus eligendi soluta, aperiam iste reprehenderit voluptatem, atque voluptas vero ratione temporibus in dolor! Quos libero obcaecati omnis. Dolore illum quod explicabo dolorem perferendis ipsa qui tempora? Similique, aspernatur!</p>
-        <p title="Still looking at me? Why?">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum ducimus eligendi non, sint eius dolor laudantium recusandae, iste quidem nemo optio architecto, saepe temporibus quas! Maxime eaque optio impedit quidem, quod, aperiam veniam placeat temporibus nostrum accusantium sunt ducimus et voluptatibus nobis fugit enim! Culpa quia illo totam nobis omnis eos iusto molestiae facere earum nesciunt amet, similique hic inventore numquam minus architecto? Eveniet nihil expedita architecto atque. In illum eum debitis officia nisi, facere harum repudiandae repellat dignissimos mollitia iusto vero quibusdam, ducimus soluta sapiente eveniet temporibus assumenda laborum perspiciatis explicabo? Obcaecati, harum autem? Maxime pariatur labore ipsum.</p>
-        </center>
-
-        <a title="Connect information" class="button" href="connectUs.html">
-            <button style="background-color: rgb(225, 193, 124); 
-            color:rgb(47, 185, 153); 
-            width: 150px; 
-            border-radius: 5px;
-            height: 50px;">
-            <b>Connect Us</b>
-            </button>
-        </a>
-        <form id="myForm">
-          <p></p>
-          <label>Word you want to hide</label>
-          <input id="myInput" type="text"><br>
-          <button type="submit">Submit</button>
+    <center>
+      <div class="image-container">
+          <img id="switch" title="Why are you looking at me? Is it funny? Why so funny?" src="image/switch.png" alt="An image of a switch">
+      </div>
+      
+      <h1 title="Smokescreen shit">Here is the <b><em>Smoke screen</em></b></h1>
+      <p class="Introduction">This plug-in can hide the words you don't like</p>
+      <p title="nothing here, don't look at me">You can type the words that you don't like to see</p>
+      <p title="Still looking at me? Why?">Then click the submit to block it</p>
+      
+      <form id="myForm">
+        <p></p>
+        <label>Words that you want to hide</label>
+        <input id="myInput" type="text">
+        <button type="submit">Submit</button>
       </form>
       <div id="arrayDisplay"></div>
-  
+      <p></p>
+      <p></p>
+      <a title="Connect information" class="button" href="connectUs.html">
+          <button style="background-color: rgb(225, 193, 124); 
+          color:rgb(47, 185, 153); 
+          width: 150px; 
+          border-radius: 5px;">
+          <b>Connect Us</b>
+          </button>
+      </a>
+      </center>
   </body>
   <script src="./script.js"></script>
 </html>
