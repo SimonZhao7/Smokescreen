@@ -54,7 +54,7 @@ ul, li {
     background-color: #3d3d3d;
     border-radius: 50%;
     font-size: 24px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Consolas";
     aspect-ratio: 1 / 1;
     width: 200px;
     height: 200px;
@@ -89,11 +89,11 @@ img {
 }
 p {
     font-size: larger;
-    font-family: "Monaco";
+    font-family: "Consolas";
 }
 
 button[type="submit"] {
-    font-family: Monaco;
+    font-family: "Consolas";
     font-size: large;
     border-radius: 10px; /* Adjust the border-radius as needed */
     background-color: #ffffff;
