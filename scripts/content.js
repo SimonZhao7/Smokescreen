@@ -7,22 +7,56 @@ var observer = new MutationObserver(async function(mutations) {
     const videos = document.getElementsByTagName("video");
     for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
       let words = await get_hidden();
-
-      if (check_similarity(images[i].getAttribute("alt"), words)) {
-        if (i < images.length) images[i].style.display = "none";
-        if (i < videos.length) {
-            videos[i].style.display = "none";
-            videos[i].pause();
-            videos[i].autoplay = false;
-            videos[i].controls = false;
-        }
-      } else {
-        continue;
+      
+      // Pesudocode
+      switch('youtube.com') {
+        case 'youtube.com':
+          //let yt_data = youtube request json file.
+          const response = await fetch('https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDcaS8O3obhKz61gZcNTmoOcFtmbGQlZXc&fields=items(snippet(title,description,tags))&part=snippet&id=0y_HefNkmnk');
+          if (response.status == 200){
+            const yt_data = await response.json();
+            const content = yt_data['items'][0]['snippet']['title'] + yt_data['items'][0]['snippet']['description'];
+            if (check_similarity(content, words)){
+              if (i < images.length) images[i].style.display = "none";
+              if (i < videos.length) {
+                  videos[i].style.display = "none";
+                  videos[i].pause();
+                  videos[i].autoplay = false;
+                  videos[i].controls = false;
+              } else {
+                continue;
+              }
+            }
+          } else {
+            console.log('errored');
+          }
+          break;
+        case 'twitter.com':
+          // code block
+          break;
+        case 'instagram.com':
+          
+          break;
+        default:
+          // code
       }
+      if (url == 'youtube.com'){
+        if (check_similarity(images[i].getAttribute("alt"), words)) {
+          if (i < images.length) images[i].style.display = "none";
+          if (i < videos.length) {
+              videos[i].style.display = "none";
+              videos[i].pause();
+              videos[i].autoplay = false;
+              videos[i].controls = false;
+          }
+        } else {
+          continue;
+        }
+
     }
   }
   }
-);
+});
 
 async function get_hidden(){
   let res = await new Promise((resolve, reject) => {
