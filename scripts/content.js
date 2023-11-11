@@ -217,6 +217,27 @@ chrome.runtime.onMessage.addListener(async (msg) => {
     }
   }
 
+  // Edge: start up from False
+  if (toggled && resMap.size === 0) {
+    let words = await get_hidden();
+    let run = 0;
+    for (let key of idMap.keys()) {
+      if (resMap.has(key)) continue;
+      const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDaQys31yERwJhgtTf-Lia1H-GjUQmp68A&fields=items(snippet(title,description,tags))&part=snippet&id=${key}`);
+      run++;
+      if (response.status == 200){
+        const yt_data = await response.json();
+        const content = yt_data['items'][0]['snippet']['title'] + yt_data['items'][0]['snippet']['description'];
+        resMap.set(key, check_similarity(content, words));
+        console.log(check_similarity(content, words));
+      } else {
+        console.log('errored');
+        console.log(response.error);
+        resMap.set(key, false);
+      }
+    }
+  }
+
   for (let key of idMap.keys()) {
     idMap.get(key).forEach((img) => {
       if (toggled) {
