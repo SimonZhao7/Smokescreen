@@ -52,29 +52,32 @@ const removeItem = function(index) {
 }
 
 // Function to update the list display
-// Function to update the list display
 function updateList() {
     let list = document.createElement('ul');
     for(let i = 0; i < hiddenWords.length; i++) {
         let listItem = document.createElement('li');
-        listItem.style.display = 'flex';
-        listItem.style.justifyContent = 'space-between';
-
-        let wordSpan = document.createElement('span');
-        wordSpan.textContent = hiddenWords[i];
-        listItem.appendChild(wordSpan);
-
-        let removeButton = document.createElement('button');
-        removeButton.textContent = 'X';
-        removeButton.style.color = 'red';
-        removeButton.style.background = 'transparent';
-        removeButton.style.border = 'thin solid black';
-        removeButton.style.borderRadius = '50%';
-        removeButton.addEventListener('click', function() {
+        listItem.style.color ='white'
+        listItem.style.background = '#96C291';
+        listItem.style.border = 'thin solid black';
+        listItem.style.borderRadius = '10px'; // Reduced borderRadius
+        listItem.style.padding = 'auto'; // Added padding
+        listItem.addEventListener('mouseover', function(){
+            listItem.style.background = '#BB2525';
+        });
+        listItem.addEventListener('mouseout', function() {
+            listItem.style.background = '#96C291'; // Reset to the original color
+        });
+        listItem.addEventListener('click', function() {
             removeItem(i);
         });
 
-        listItem.appendChild(removeButton);
+        // Display only 20 characters and add "..." if the item is longer
+        let displayedText = hiddenWords[i].length > 15 ? hiddenWords[i].substring(0, 15) + "..." : hiddenWords[i];
+
+        let wordSpan = document.createElement('span');
+        wordSpan.textContent = displayedText;
+        listItem.appendChild(wordSpan);
+
         list.appendChild(listItem);
     }
     document.getElementById('arrayDisplay').innerHTML = '';

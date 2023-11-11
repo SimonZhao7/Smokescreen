@@ -8,13 +8,13 @@ html, body {
 }
 
 body {
-    background-color: #747171;
+    background-color: #c3c3c3;
     width: 250px;
     height: 400px;
     display: flex;
     flex-direction: column;
     text-align: center;
-    font-family: "Monaco";
+    font-family: "Consolas";
 }
 
 main {
@@ -54,7 +54,7 @@ ul, li {
     background-color: #3d3d3d;
     border-radius: 50%;
     font-size: 24px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Consolas;
     aspect-ratio: 1 / 1;
     width: 50%;
     margin: auto;
@@ -82,10 +82,10 @@ ul, li {
 
 img {
     border-radius: 30px;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
 }
 p {
     font-size: larger;
-    font-family: "Monaco";
+    font-family: "Consolas";
 }
