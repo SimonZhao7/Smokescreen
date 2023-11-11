@@ -1,5 +1,4 @@
 var target = document.querySelector('body');
-console.log(target);
 
 var observer = new MutationObserver(function(mutations) {
     const images = document.getElementsByTagName("img");
@@ -7,7 +6,12 @@ var observer = new MutationObserver(function(mutations) {
     mutations.forEach(() => {
       for (let i = Math.max(videos.length, images.length) - 1; i >= 0 ; i--){
         if (i < images.length) images[i].style.display = "none";
-        if (i < videos.length) videos[i].style.display = "none";
+        if (i < videos.length) {
+          videos[i].style.display = "none";
+          videos[i].pause();
+          videos[i].autoplay = false;
+          videos[i].controls = false;
+        }
       };
     });
 });
