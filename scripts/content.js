@@ -1,31 +1,19 @@
 var target = document.querySelector('body');
+console.log(target);
 
 var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      const body = document.getElementsByTagName('body')[0];
-      const images = document.getElementsByTagName('img');
-  
-      for (let i = 0; i < images.length; i++) {
-          const { left, top, right, bottom } = images[i].getBoundingClientRect();
-          const width = right - left;
-          const height = bottom - top;
-  
-          const box = document.createElement('div');
-          box.style.width = `${width}px`;
-          box.style.height = `${height}px`;
-          box.style.backgroundColor = 'black';
-          box.style.position = 'absolute';
-          box.style.top = `${top}px`;
-          box.style.left = `${left}px`;
-          body.appendChild(box);
-      }  
-      imgCnt = images.length;
+    const images = document.getElementsByTagName('img');
+    mutations.forEach(() => { 
+      for (let i = images.length - 1; i >= 0 ; i--){
+        images[i].style.display = "none";
+      };
+      
     });
 });
 
 observer.observe(target, {
-  attributes: true, 
-  childList: true, 
-  characterData: true,
-  subtree: true
-}); 
+  attributes: true, // monitors changes in attributes within the 'target' and descendants
+  childList: true, // observes changes in direct children of 'target'
+  characterData: true, // observes changes in 'textContent' of 'target' and descendants
+  subtree: true // extends observation to the entire subtree of 'target'
+});
