@@ -107,7 +107,7 @@ const doStuff = async () => {
   let run = 0;
   for (let key of idMap.keys()) {
     if (resMap.has(key)) continue;
-    const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDaQys31yERwJhgtTf-Lia1H-GjUQmp68A&fields=items(snippet(title,description,tags))&part=snippet&id=${key}`);
+    const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?key={API_KEY}&fields=items(snippet(title,description,tags))&part=snippet&id=${key}`);
     run++;
     if (response.status == 200){
       const yt_data = await response.json();
